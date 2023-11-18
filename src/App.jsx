@@ -1,24 +1,28 @@
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import Get from "./components/get/Get";
+import Add from "./components/add/NewProduct";
 
 function App() {
-  fetch('https://dummyjson.com/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      
-      username: 'kminchelle',
-      password: '0lelplR',
-      // expiresInMins: 60, // optional
-    })
-  })
-  .then(res => res.json())
-  .then(console.log);
-
+  const [products, setProducts] = useState([]);
+  const getProducts = async () => {
+    try {
+      let resp = await fetch(`https://dummyjson.com/products?limit=30`);
+      let data = await resp.json();
+      setProducts(data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getProducts();
+  }, []);
   return (
     <>
-      
+      <Get products={products} />
+      <Add products={products}/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
