@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Button, Modal, Image } from "antd";
 import "./Get.css";
 import Delete from "../delete/Delete";
+import Edit from "../edit/Edit";
 
 function Get({ products }) {
   const [selectedProductId, setSelectedProductId] = useState(null);
@@ -18,8 +19,10 @@ function Get({ products }) {
   };
   const handleDeleteSuccess = () => {
     alert("Product deleted successfully");
-  }
-
+  };
+  const handleEditSuccess = () => {
+    alert("Product edited successfully");
+  };
   return (
     <div className="gridStyle">
       <Card title="Get all products">
@@ -29,8 +32,6 @@ function Get({ products }) {
               <div>{el.title}</div>
               <div className="btn">
                 <Button onClick={() => showModal(el.id)}>View</Button>
-                <Button type="primary">Edit</Button>
-                <Delete id={el.id} onDelete={handleDeleteSuccess} />
                 <Modal
                   title="Product Details"
                   open={selectedProductId === el.id}
@@ -42,6 +43,8 @@ function Get({ products }) {
                   <p>{el.description}</p>
                   <p>{el.price}$</p>
                 </Modal>
+                <Edit id={el.id} onEdit={handleEditSuccess} products={products} />
+                <Delete id={el.id} onDelete={handleDeleteSuccess} />
               </div>
             </div>
           </Card.Grid>
