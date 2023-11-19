@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { Button, Modal,Input  } from "antd";
+import { Button, Modal, Input } from "antd";
+import { DollarOutlined } from "@ant-design/icons";
+import TextArea from "antd/es/input/TextArea";
 
-function NewProduct() {
+function NewProduct({ onAdd }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
 
   const showAdding = () => {
     setIsModalOpen(true);
@@ -11,6 +16,8 @@ function NewProduct() {
 
   const handleOK = () => {
     setIsModalOpen(false);
+ // Trigger the callback to refresh the product list
+    alert("Product added successfully");
   };
 
   const handleCancel = () => {
@@ -20,26 +27,27 @@ function NewProduct() {
   const addNewProduct = () => {
     setIsLoading(true);
 
-    fetch('https://dummyjson.com/products/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("https://dummyjson.com/products/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        title: 'BMW Pencil',
-        /* other product data */
+        title,
+        description,
+        price,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setIsLoading(false);
+        // Handle success, e.g., show a success message or update the product list
+        handleOK();
       })
-    })
-    .then(res => res.json())
-    .then((data) => {
-      console.log(data);
-      setIsLoading(false);
-      // Handle success, e.g., show a success message or update the product list
-      handleOK();
-    })
-    .catch((error) => {
-      console.error("Error adding new product:", error);
-      setIsLoading(false);
-      // Handle error, e.g., show an error message to the user
-    });
+      .catch((error) => {
+        console.error("Error adding new product:", error);
+        setIsLoading(false);
+        // Handle error, e.g., show an error message to the user
+      });
   };
 
   return (
@@ -54,7 +62,32 @@ function NewProduct() {
         onCancel={handleCancel}
         confirmLoading={isLoading}
       >
-        <Input placeholder="Basic usage" />
+        <p>
+          product name
+          <Input
+            placeholder="Ex: iphone X"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </p>
+        <p>
+          description
+          <TextArea
+            rows={3}
+            placeholder="Ex: An Apple mobile phone with..."
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </p>
+        <p>
+          price
+          <Input
+            addonAfter={<DollarOutlined />}
+            placeholder="Ex: 1,200 $"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+        </p>
       </Modal>
     </div>
   );
