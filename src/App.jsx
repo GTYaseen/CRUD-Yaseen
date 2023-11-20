@@ -25,9 +25,6 @@ function App() {
     getProducts();
   }, [search]); // Run useEffect whenever the search term changes
 
-  const handleSearch = () => {
-    getProducts(); // Trigger product fetching when the search button is clicked
-  };
 
   const handleInputChange = (e) => {
     setSearch(e.target.value);

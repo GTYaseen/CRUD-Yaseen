@@ -3,7 +3,6 @@ import { Button, Modal, Input} from "antd";
 const { TextArea } = Input;
 import { DollarOutlined ,EditOutlined} from "@ant-design/icons";
 
-
 function Edit({id, onEdit,products}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
