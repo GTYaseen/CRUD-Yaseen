@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
 
 function Delete({ id, onDelete }) {
   const handleDelete = () => {
@@ -17,7 +18,7 @@ function Delete({ id, onDelete }) {
 
   return (
     <div>
-      <Button type="dashed" danger onClick={handleDelete}>Delete</Button>
+      <Button type="dashed" danger onClick={handleDelete} style={{backgroundColor:"#FF0000", color:"white"}}><DeleteOutlined /></Button>
     </div>
   );
 }

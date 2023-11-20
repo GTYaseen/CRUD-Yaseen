@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Button, Modal, Input} from "antd";
 const { TextArea } = Input;
-import { DollarOutlined } from "@ant-design/icons";
+import { DollarOutlined ,EditOutlined} from "@ant-design/icons";
 
-function Edit({ id, onEdit,products }) {
+
+function Edit({id, onEdit,products}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
@@ -18,7 +19,6 @@ function Edit({ id, onEdit,products }) {
     setIsModalOpen(false);
     // Trigger the callback to refresh the product list
     onEdit();
-    alert("Product edited successfully");
   };
 
   const handleCancel = () => {
@@ -52,12 +52,12 @@ function Edit({ id, onEdit,products }) {
 
   return (
     <div>
-      <Button type="primary" onClick={showEditing}>
-        Edit
+      <Button type="primary" onClick={showEditing} style={{backgroundColor:"black", color:"white"}} >
+      <EditOutlined />
       </Button>
       <Modal
         title="Edit Product"
-        visible={isModalOpen}
+        open={isModalOpen}
         onOk={updateProduct}
         onCancel={handleCancel}
         confirmLoading={isLoading}
@@ -66,7 +66,7 @@ function Edit({ id, onEdit,products }) {
           Product Name
           <Input
             placeholder="Ex: iPhone X"
-            value={title}
+            value={products.title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </p>
@@ -83,7 +83,7 @@ function Edit({ id, onEdit,products }) {
           Price
           <Input
             addonAfter={<DollarOutlined />}
-            placeholder={products.price}
+            placeholder="Ex: 1000$"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />

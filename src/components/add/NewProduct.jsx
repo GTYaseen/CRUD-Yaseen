@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Button, Modal, Input } from "antd";
+import React, { Component, useState } from "react";
+import { Button, Modal, Input,} from "antd";
 import { DollarOutlined } from "@ant-design/icons";
+
 import TextArea from "antd/es/input/TextArea";
 
 function NewProduct({ onAdd }) {
@@ -52,12 +53,12 @@ function NewProduct({ onAdd }) {
 
   return (
     <div>
-      <Button type="primary" onClick={showAdding}>
+      <Button type="primary" onClick={showAdding} style={{ backgroundColor: "black", color: "white" }}>
         Add new product
       </Button>
       <Modal
         title="Add new product"
-        visible={isModalOpen}
+        open={isModalOpen}
         onOk={addNewProduct}
         onCancel={handleCancel}
         confirmLoading={isLoading}
