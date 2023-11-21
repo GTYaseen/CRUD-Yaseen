@@ -7,31 +7,33 @@ import Header from "./components/header/Header";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
+
 function App() {
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState("");
   const [skip, setSkip] = useState(0);
-
+  const [search,setSearch]=useState("")
+  const [value, setValue] = useState();
+  
   const getProducts = async () => {
     try {
-      let resp = await fetch(`https://dummyjson.com/products/search?q=${search}&limit=10&skip=${skip}`);
+      let resp = await fetch(
+        `https://dummyjson.com/products/search?q=${search}&limit=10&skip=${skip}`
+      );
       let data = await resp.json();
       setProducts(data.products);
     } catch (error) {
       console.log(error);
     }
   };
-
+  
   useEffect(() => {
     getProducts();
-  }, [search]); // Run useEffect whenever the search term changes
-
-
-  const handleInputChange = (e) => {
-    setSearch(e.target.value);
+  }, [search, skip, value]);
+  
+  const handleInputChange = () => {
+    setSearch(value);
+    setSkip(0);
   };
-  console.log(skip)
-  console.log(products)
   return (
     <>
       <Header />
@@ -39,18 +41,25 @@ function App() {
       <Container>
         <div className="search">
           <div className="search-box">
-            <SearchOutlined style={{paddingLeft:"10px"}}/>
+            <button onClick={handleInputChange}>
+              <SearchOutlined style={{ paddingLeft: "10px" }} />
+            </button>
             <Input
-              placeholder="Find product"
-              style={{ width: 200, border: "none", outline: "none" }}
-              onChange={handleInputChange}
-              value={search}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              placeholder="Search"
+              style={{outline:"none",border:"none"}}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setSearch(value);
+                }
+              }}
             />
           </div>
           <Add />
         </div>
         <br />
-        <Get products={products} skip={skip} setSkip={setSkip}/>
+        <Get products={products} skip={skip} setSkip={setSkip} />
       </Container>
     </>
   );

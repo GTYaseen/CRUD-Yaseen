@@ -13,6 +13,21 @@
   justify-content: space-between;
   gap: 10px;
 }
-.customTable .ant-table-thead > tr > th {
-  background-color: #D9D9D9; /* Set your desired background color */
+.table1 .ant-table-thead > tr > th {
+  background-color: #D9D9D9;
+}
+.table2 .ant-table-thead > tr > th {
+  background-color: #D9D9D9; 
+}
+.table2 {
+  display: none;
+}
+@media screen and (max-width: 540px) {
+  .table1{
+    display: none;
+  }
+  .table2 {
+    display: block;
+    width: 350px;
+  }
 }

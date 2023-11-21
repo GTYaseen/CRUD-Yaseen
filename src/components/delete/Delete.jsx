@@ -9,7 +9,7 @@ function Delete({ id, onDelete }) {
     })
     .then(() => {
       console.log(`Product with ID ${id} deleted successfully`);
-      onDelete(); // Trigger the callback to refresh the product list
+      onDelete(); 
     })
     .catch((error) => {
       console.error(`Error deleting product with ID ${id}:`, error);

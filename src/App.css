@@ -14,3 +14,8 @@
     overflow: hidden;
     align-items: center;
 }
+.search-box button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}

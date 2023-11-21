@@ -16,7 +16,6 @@ function Edit({id, onEdit,products}) {
 
   const handleOK = () => {
     setIsModalOpen(false);
-    // Trigger the callback to refresh the product list
     onEdit();
   };
 
@@ -28,7 +27,7 @@ function Edit({id, onEdit,products}) {
     setIsLoading(true);
 
     fetch(`https://dummyjson.com/products/${id}`, {
-      method: "PUT", // or PATCH
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title,
@@ -45,7 +44,7 @@ function Edit({id, onEdit,products}) {
       .catch((error) => {
         console.error("Error editing product:", error);
         setIsLoading(false);
-        // Handle error, e.g., show an error message to the user
+        
       });
   };
 
