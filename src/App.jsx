@@ -10,10 +10,11 @@ import { SearchOutlined } from "@ant-design/icons";
 function App() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [skip, setSkip] = useState(0);
 
   const getProducts = async () => {
     try {
-      let resp = await fetch(`https://dummyjson.com/products/search?q=${search}`);
+      let resp = await fetch(`https://dummyjson.com/products/search?q=${search}&limit=10&skip=${skip}`);
       let data = await resp.json();
       setProducts(data.products);
     } catch (error) {
@@ -29,7 +30,8 @@ function App() {
   const handleInputChange = (e) => {
     setSearch(e.target.value);
   };
-
+  console.log(skip)
+  console.log(products)
   return (
     <>
       <Header />
@@ -48,7 +50,7 @@ function App() {
           <Add />
         </div>
         <br />
-        <Get products={products} />
+        <Get products={products} skip={skip} setSkip={setSkip}/>
       </Container>
     </>
   );

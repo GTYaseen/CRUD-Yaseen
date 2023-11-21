@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { Button, Modal, Image, Table, Space } from "antd";
+import { Button, Modal, Image, Table, Space,Pagination } from "antd";
 import "./Get.css";
 import Delete from "../delete/Delete";
 import Edit from "../edit/Edit";
 import { EyeOutlined } from "@ant-design/icons";
 
-function Get({ products }) {
+function Get({ products , skip, setSkip}) {
   const [selectedProductId, setSelectedProductId] = useState(null);
-
   const showModal = (id) => {
     setSelectedProductId(id);
   };
@@ -73,9 +72,13 @@ function Get({ products }) {
       ),
     },
   ];
+  
   return (
     <div className="tableStyle">
-      <Table columns={columns} dataSource={products} className="customTable" />
+      <Table columns={columns} dataSource={products} className="customTable" pagination={false}/>
+      <center>
+      <Pagination defaultCurrent={1} total={100} onChange={(page) => setSkip((page - 1) * 10)} />
+      </center>
     </div>
   );
 }
