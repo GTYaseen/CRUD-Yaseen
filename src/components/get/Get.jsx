@@ -134,7 +134,7 @@ function Get({ products, skip, setSkip }) {
           dataSource={products}
           className="customTable"
           pagination={false}
-          style={{ width: "400px" }}
+          style={{ width: "300px" }}
         />
       </div>
       <center>
