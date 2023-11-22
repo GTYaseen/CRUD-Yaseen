@@ -17,9 +17,6 @@ function Get({ products, skip, setSkip }) {
   const handleCancel = () => {
     setSelectedProductId(null);
   };
-  const handleDeleteSuccess = () => {
-    alert("Product deleted successfully");
-  };
   const handleEditSuccess = () => {
     alert("Product edited successfully");
   };
@@ -67,7 +64,7 @@ function Get({ products, skip, setSkip }) {
             <p>{record.price}$</p>
           </Modal>
           <Edit id={record.id} onEdit={handleEditSuccess} products={products} />
-          <Delete id={record.id} onDelete={handleDeleteSuccess} />
+          <Delete id={record.id} />
         </Space>
       ),
     },
@@ -106,7 +103,7 @@ function Get({ products, skip, setSkip }) {
             <p>{record.price}$</p>
           </Modal>
           <Edit id={record.id} onEdit={handleEditSuccess} products={products} />
-          <Delete id={record.id} onDelete={handleDeleteSuccess} />
+          <Delete id={record.id}  />
         </Space>
       ),
     },
