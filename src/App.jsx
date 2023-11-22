@@ -28,7 +28,7 @@ function App() {
   
   useEffect(() => {
     getProducts();
-  }, [search, skip, value]);
+  }, [search, skip]);
   
   const handleInputChange = () => {
     setSearch(value);
@@ -60,6 +60,7 @@ function App() {
         </div>
         <br />
         <Get products={products} skip={skip} setSkip={setSkip} />
+        <br />
       </Container>
     </>
   );

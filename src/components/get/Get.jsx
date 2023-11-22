@@ -74,11 +74,6 @@ function Get({ products, skip, setSkip }) {
   ];
   const columns2 = [
     {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
-    },
-    {
       title: "Title",
       dataIndex: "title",
       key: "title",
@@ -119,14 +114,12 @@ function Get({ products, skip, setSkip }) {
   return (
     <div>
       <div className="table1">
-        <center>
         <Table
           columns={columns}
           dataSource={products}
           className="customTable"
           pagination={false}
         />
-        </center>
       </div>
       <div className="table2">
         <Table
@@ -134,9 +127,10 @@ function Get({ products, skip, setSkip }) {
           dataSource={products}
           className="customTable"
           pagination={false}
-          style={{ width: "300px" }}
+          style={{ width: "200px" }}
         />
       </div>
+      <br />
       <center>
         <Pagination
           defaultCurrent={1}
@@ -144,7 +138,8 @@ function Get({ products, skip, setSkip }) {
           showSizeChanger={false}
           onChange={(page) => setSkip((page - 1) * 10)}
         />
-      </center>
+    </center>
+    <br />
     </div>
   );
 }
