@@ -40,6 +40,7 @@ function Get({ products, skip, setSkip }) {
       title: "Price",
       dataIndex: "price",
       key: "price",
+      render: (price) => `${price}$`,
     },
     {
       title: "Action",
@@ -63,7 +64,7 @@ function Get({ products, skip, setSkip }) {
             <p>{record.description}</p>
             <p>{record.price}$</p>
           </Modal>
-          <Edit id={record.id} onEdit={handleEditSuccess} products={products} />
+          <Edit id={record.id} onEdit={handleEditSuccess} productDetails={record}/>
           <Delete id={record.id} />
         </Space>
       ),
@@ -79,30 +80,14 @@ function Get({ products, skip, setSkip }) {
       title: "Price",
       dataIndex: "price",
       key: "price",
+      render: (price) => `${price}$`,
     },
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <Space size="middle">
-          <Button
-            onClick={() => showModal(record.id)}
-            style={{ backgroundColor: "white", color: "black" }}
-          >
-            <EyeOutlined />
-          </Button>
-          <Modal
-            title="Product Details"
-            open={selectedProductId === record.id}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
-            <h1>{record.title}</h1>
-            <Image width={200} src={record.thumbnail} alt={record.title} />
-            <p>{record.description}</p>
-            <p>{record.price}$</p>
-          </Modal>
-          <Edit id={record.id} onEdit={handleEditSuccess} products={products} />
+          <Edit id={record.id} onEdit={handleEditSuccess} productDetails={record} />
           <Delete id={record.id}  />
         </Space>
       ),
@@ -124,7 +109,7 @@ function Get({ products, skip, setSkip }) {
           dataSource={products}
           className="customTable"
           pagination={false}
-          style={{ width: "200px" }}
+          style={{ width: "100%" }}
         />
       </div>
       <br />

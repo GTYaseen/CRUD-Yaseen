@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Modal, Input} from "antd";
 const { TextArea } = Input;
 import { DollarOutlined ,EditOutlined} from "@ant-design/icons";
 
-function Edit({id, onEdit,products}) {
+function Edit({ id, onEdit, productDetails }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
@@ -47,7 +47,13 @@ function Edit({id, onEdit,products}) {
         
       });
   };
-
+  useEffect(() => {
+    if (productDetails) {
+      setTitle(productDetails.title || "");
+      setDescription(productDetails.description || "");
+      setPrice(productDetails.price || "");
+    }
+  }, [productDetails]);
   return (
     <div>
       <Button type="primary" onClick={showEditing} style={{backgroundColor:"black", color:"white"}} >
@@ -64,7 +70,7 @@ function Edit({id, onEdit,products}) {
           Product Name
           <Input
             placeholder="Ex: iPhone X"
-            value={products.title}
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </p>
