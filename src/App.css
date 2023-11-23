@@ -19,3 +19,9 @@
     background-color: transparent;
     cursor: pointer;
 }
+@media screen and (max-width: 400px) {
+    .search-box{
+        width: 150px;
+    }
+    
+}

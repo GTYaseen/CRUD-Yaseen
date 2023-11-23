@@ -24,3 +24,12 @@
     display: flex;
     align-items: center;
 }
+@media screen and (max-width: 400px) {
+    .user h1{
+        font-size: 25px;
+    }
+    .border{
+        font-size: 12px;
+    }
+    
+}

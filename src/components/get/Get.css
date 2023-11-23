@@ -21,13 +21,15 @@
 }
 .table2 {
   display: none;
+  width: 100%;
+  margin: auto;
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 570px) {
   .table1{
     display: none;
   }
   .table2 {
-    display: block;
-    width: 350px;
+    display: table;
+    width: 100%;
   }
 }
