@@ -1,10 +1,8 @@
-import React from 'react'
-import "./container.css"
+import React from "react";
+import "./container.css";
 
 function Container({ children }) {
-  return (
-    <div className="container">{children}</div>
-  )
+  return <div className="container">{children}</div>;
 }
 
-export default Container
+export default Container;

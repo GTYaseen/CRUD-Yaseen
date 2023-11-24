@@ -1,10 +1,9 @@
-import React, { Component, useState } from "react";
-import { Button, Modal, Input,} from "antd";
+import React, { useState } from "react";
+import { Button, Modal, Input } from "antd";
 import { DollarOutlined } from "@ant-design/icons";
-
 import TextArea from "antd/es/input/TextArea";
 
-function NewProduct({ onAdd }) {
+function NewProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
@@ -17,7 +16,6 @@ function NewProduct({ onAdd }) {
 
   const handleOK = () => {
     setIsModalOpen(false);
- // Trigger the callback to refresh the product list
     alert("Product added successfully");
   };
 
@@ -41,19 +39,21 @@ function NewProduct({ onAdd }) {
       .then((data) => {
         console.log(data);
         setIsLoading(false);
-        // Handle success, e.g., show a success message or update the product list
         handleOK();
       })
       .catch((error) => {
         console.error("Error adding new product:", error);
         setIsLoading(false);
-        // Handle error, e.g., show an error message to the user
       });
   };
 
   return (
     <div>
-      <Button type="primary" onClick={showAdding} style={{ backgroundColor: "black", color: "white" }}>
+      <Button
+        type="primary"
+        onClick={showAdding}
+        style={{ backgroundColor: "black", color: "white" }}
+      >
         Add new product
       </Button>
       <Modal

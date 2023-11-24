@@ -7,13 +7,12 @@ import Header from "./components/header/Header";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-
 function App() {
   const [products, setProducts] = useState([]);
   const [skip, setSkip] = useState(0);
-  const [search,setSearch]=useState("")
+  const [search, setSearch] = useState("");
   const [value, setValue] = useState();
-  
+
   const getProducts = async () => {
     try {
       let resp = await fetch(
@@ -25,11 +24,11 @@ function App() {
       console.log(error);
     }
   };
-  
+
   useEffect(() => {
     getProducts();
   }, [search, skip]);
-  
+
   const handleInputChange = () => {
     setSearch(value);
     setSkip(0);
@@ -48,7 +47,7 @@ function App() {
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder="Search"
-              style={{outline:"none",border:"none"}}
+              style={{ outline: "none", border: "none" }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   setSearch(value);
@@ -59,7 +58,7 @@ function App() {
           <Add />
         </div>
         <br />
-        <Get products={products} skip={skip} setSkip={setSkip} />
+        <Get products={products} setSkip={setSkip} />
         <br />
       </Container>
     </>

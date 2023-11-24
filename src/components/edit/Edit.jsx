@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Input} from "antd";
+import { Button, Modal, Input } from "antd";
 const { TextArea } = Input;
-import { DollarOutlined ,EditOutlined} from "@ant-design/icons";
+import { DollarOutlined, EditOutlined } from "@ant-design/icons";
 
 function Edit({ id, onEdit, productDetails }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +44,6 @@ function Edit({ id, onEdit, productDetails }) {
       .catch((error) => {
         console.error("Error editing product:", error);
         setIsLoading(false);
-        
       });
   };
   useEffect(() => {
@@ -56,8 +55,12 @@ function Edit({ id, onEdit, productDetails }) {
   }, [productDetails]);
   return (
     <div>
-      <Button type="primary" onClick={showEditing} style={{backgroundColor:"black", color:"white"}} >
-      <EditOutlined />
+      <Button
+        type="primary"
+        onClick={showEditing}
+        style={{ backgroundColor: "black", color: "white" }}
+      >
+        <EditOutlined />
       </Button>
       <Modal
         title="Edit Product"
